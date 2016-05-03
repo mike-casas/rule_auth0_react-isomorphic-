@@ -11,7 +11,8 @@ import Default from './views/Default.jsx';
 var routes = module.exports = (
   <Router>
       <Route path="/rules" component={Layout}>
-        <Route path="/rules/:ruleId" component={ListPage}/>
+        <IndexRoute component={Default} />
+        <Route path="/rules/:ruleId" component={ListPage} />
       </Route>
    </Router>
 );

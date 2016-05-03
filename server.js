@@ -22,6 +22,8 @@ import express from 'express';
 import favicon from 'serve-favicon';
 import ReactEngine from 'react-engine';
 import routes from './public/routes.jsx';
+var async = require("async");
+
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
 
@@ -58,29 +60,46 @@ app.use(favicon(join(__dirname, '/public/favicon.ico')));
 app.use('/api', api);
 
 app.get('/rules/:ruleId', function(req, res) {
-
   fetch('http://localhost:3000/api/rule/'+ req.params.ruleId)
     .then(function(response) {
       if (response.status >= 400) {
         throw new Error("Bad response from server");
       }
       return response.json();
-
     })
     .then(function(stories) {
+      var categories=[];
+      var counter=0;
       let rule = stories[0].template[0].rule;
-      res.render(req.url, {
-        categories:stories[0].categories,
-        title: rule.title,
-        summary: rule.summary,
-        logo: rule.logo || 'vanillajs'
+      async.map(stories[0].categories, function(rule, callback){
+          if(counter < 4 ){
+            categories.push(rule);
+            counter ++;
+          }
+          callback();
+      }, function(err,result){
+          res.render(req.url, {
+            categories:categories,
+            title: rule.title,
+            summary: rule.summary,
+            logo: rule.logo || 'vanillajs',
+            description: rule.description,
+            code: rule.code
+          });
       });
     });
+});
+
+app.get('/rules', function(req, res) {
+
+
+      res.render(req.url, {
+       title:"aqui default"
+      });
+
 
 
 });
-
-
 
 // 404 template
 app.use(function(req, res) {

@@ -2,6 +2,9 @@ import React from 'react'
 import Header from './Header.jsx'
 import Footer from './Footer.jsx'
 import Jumbotron from './jumbotron.jsx'
+import Categories from './Categories.jsx'
+var Router = require('react-router');
+
 module.exports = React.createClass({
     render: function render() {
       return (
@@ -14,10 +17,10 @@ module.exports = React.createClass({
           <body>
               <Header />
               <Jumbotron logo= {this.props.logo} title={this.props.title} summary= {this.props.summary} />
-              <div className="container">
                 {this.props.children}
-              </div>
+              <Categories categories={this.props.categories}/>
               <Footer/>
+
             <script src='/bundle.js'></script>
           </body>
         </html>

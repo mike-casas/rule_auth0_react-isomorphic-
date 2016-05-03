@@ -3,7 +3,7 @@ var React = require('react');
 module.exports = React.createClass({
   render: function() {
     return (
-      <section className='jumbotron'>
+      <section className='jumbotron border-top'>
       <div  className="circle-logo" data-name={this.props.logo}>
       <div className="logo"></div>
       </div>

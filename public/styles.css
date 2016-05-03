@@ -10414,7 +10414,6 @@ pre code.hljs-line-numbers.hljs-line-numbers {
 }
 .jumbotron {
   background-color: #fff;
-  border-top: 1px solid #e3e5e7;
 }
 .jumbotron h1 {
   color: rgba(0,0,0,0.86);
@@ -10427,4 +10426,26 @@ pre code.hljs-line-numbers.hljs-line-numbers {
 }
 #site-footer {
   background-color: #f5f7f9;
+}
+.border-top {
+  border-top: 1px solid #e3e5e7;
+}
+.wrapper-content {
+  padding: 0px 70px 0 70px;
+}
+.rule-category {
+  height: 120px;
+  margin: 20px 0 40px 0;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
+}
+.rule-category p {
+  padding: 2px;
+  color: rgba(0,0,0,0.54);
+}
+pre {
+  max-height: 900px;
+  overflow: auto;
 }
