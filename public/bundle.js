@@ -87,7 +87,7 @@
 
 	var _layout2 = _interopRequireDefault(_layout);
 
-	var _list = __webpack_require__(100);
+	var _list = __webpack_require__(99);
 
 	var _list2 = _interopRequireDefault(_list);
 
@@ -9260,10 +9260,6 @@
 
 	var _jumbotron2 = _interopRequireDefault(_jumbotron);
 
-	var _Categories = __webpack_require__(99);
-
-	var _Categories2 = _interopRequireDefault(_Categories);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	var Router = __webpack_require__(34);
@@ -9292,7 +9288,6 @@
 	        _react2.default.createElement(_Header2.default, null),
 	        _react2.default.createElement(_jumbotron2.default, { logo: this.props.logo, title: this.props.title, summary: this.props.summary }),
 	        this.props.children,
-	        _react2.default.createElement(_Categories2.default, { categories: this.props.categories }),
 	        _react2.default.createElement(_Footer2.default, null),
 	        _react2.default.createElement('script', { src: '/bundle.js' })
 	      )
@@ -9962,7 +9957,100 @@
 /* 99 */
 /***/ function(module, exports, __webpack_require__) {
 
-	"use strict";
+	'use strict';
+
+	var _Categories = __webpack_require__(100);
+
+	var _Categories2 = _interopRequireDefault(_Categories);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	var React = __webpack_require__(2);
+
+	module.exports = React.createClass({
+	  displayName: 'exports',
+
+	  render: function render() {
+	    function description(data) {
+	      return {
+	        __html: data
+	      };
+	    }
+	    return React.createElement(
+	      'div',
+	      this.props,
+	      React.createElement(
+	        'section',
+	        { className: 'content' },
+	        React.createElement(
+	          'div',
+	          { className: 'container wrapper-content' },
+	          React.createElement(
+	            'h3',
+	            null,
+	            'How it Works?'
+	          ),
+	          React.createElement('p', { dangerouslySetInnerHTML: description(this.props.description) }),
+	          React.createElement(
+	            'h3',
+	            null,
+	            'How do I use it?'
+	          ),
+	          React.createElement(
+	            'p',
+	            null,
+	            'Just create a new rule in the Auth0 dashboard, and copy the following code replacing the placeholders with the appropriate values.'
+	          ),
+	          React.createElement(
+	            'pre',
+	            null,
+	            React.createElement(
+	              'code',
+	              { className: 'language-js hljs javascript' },
+	              this.props.code
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(
+	        'section',
+	        null,
+	        React.createElement(
+	          'div',
+	          { className: 'container wrapper-content' },
+	          React.createElement(
+	            'h3',
+	            null,
+	            'What is a Rule?'
+	          ),
+	          React.createElement(
+	            'p',
+	            null,
+	            'A rule is arbitrary JavaScript code that can be used to extend Auth0\'s default behavior when authenticating a user. Enabled rules will be executed in the order shown below for all users and applications as the final step of the authentication process.'
+	          ),
+	          React.createElement(
+	            'p',
+	            null,
+	            'Rules can be used to enrich and transform the user profile, deny access to specific users under certain conditions, retrieve information from external services and much more. To learn more about rules, see ',
+	            React.createElement(
+	              'a',
+	              { href: 'https://auth0.com/docs/rules', target: '_blank' },
+	              'https://auth0.com/docs/rules.'
+	            )
+	          )
+	        )
+	      ),
+	      React.createElement(_Categories2.default, { categories: this.props.categories })
+	    );
+	  }
+
+	});
+
+/***/ },
+/* 100 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
 
 	var _react = __webpack_require__(2);
 
@@ -9970,35 +10058,41 @@
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+	var Router = __webpack_require__(34);
+
 	module.exports = _react2.default.createClass({
-	  displayName: "exports",
+	  displayName: 'exports',
 
 	  render: function render() {
 	    return _react2.default.createElement(
-	      "section",
-	      { className: "border-top" },
+	      'section',
+	      { className: 'border-top' },
 	      _react2.default.createElement(
-	        "div",
-	        { className: "container" },
+	        'div',
+	        { className: 'container' },
 	        _react2.default.createElement(
-	          "h3",
-	          { className: "text-center" },
-	          "You Might Also be Interested in the Following Rules"
+	          'h3',
+	          { className: 'text-center' },
+	          'You Might Also be Interested in the Following Rules'
 	        ),
 	        _react2.default.createElement(
-	          "div",
-	          { className: "row" },
+	          'div',
+	          { className: 'row' },
 	          this.props.categories.map(function (rule, i) {
 	            return _react2.default.createElement(
-	              "div",
-	              { key: i, className: "col-md-3" },
+	              'div',
+	              { key: i, className: 'col-md-3' },
 	              _react2.default.createElement(
-	                "div",
-	                { className: "bg-color-gray-light text-center rule-category" },
+	                'div',
+	                { className: 'bg-color-gray-light text-center rule-category' },
 	                _react2.default.createElement(
-	                  "p",
-	                  null,
-	                  rule.title
+	                  Router.Link,
+	                  { to: '/rules/' + rule.id },
+	                  _react2.default.createElement(
+	                    'p',
+	                    null,
+	                    rule.title
+	                  )
 	                )
 	              )
 	            );
@@ -10010,96 +10104,10 @@
 	});
 
 /***/ },
-/* 100 */
-/***/ function(module, exports, __webpack_require__) {
-
-	"use strict";
-
-	var React = __webpack_require__(2);
-
-	module.exports = React.createClass({
-	  displayName: "exports",
-
-	  render: function render() {
-	    function description(data) {
-	      return {
-	        __html: data
-	      };
-	    }
-	    return React.createElement(
-	      "div",
-	      null,
-	      React.createElement(
-	        "section",
-	        { className: "content" },
-	        React.createElement(
-	          "div",
-	          { className: "container wrapper-content" },
-	          React.createElement(
-	            "h3",
-	            null,
-	            "How it Works?"
-	          ),
-	          React.createElement("p", { dangerouslySetInnerHTML: description(this.props.description) }),
-	          React.createElement(
-	            "h3",
-	            null,
-	            "How do I use it?"
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            "Just create a new rule in the Auth0 dashboard, and copy the following code replacing the placeholders with the appropriate values."
-	          ),
-	          React.createElement(
-	            "pre",
-	            null,
-	            React.createElement(
-	              "code",
-	              { className: "language-js hljs javascript" },
-	              this.props.code
-	            )
-	          )
-	        )
-	      ),
-	      React.createElement(
-	        "section",
-	        null,
-	        React.createElement(
-	          "div",
-	          { className: "container wrapper-content" },
-	          React.createElement(
-	            "h3",
-	            null,
-	            "What is a Rule?"
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            "A rule is arbitrary JavaScript code that can be used to extend Auth0's default behavior when authenticating a user. Enabled rules will be executed in the order shown below for all users and applications as the final step of the authentication process."
-	          ),
-	          React.createElement(
-	            "p",
-	            null,
-	            "Rules can be used to enrich and transform the user profile, deny access to specific users under certain conditions, retrieve information from external services and much more. To learn more about rules, see ",
-	            React.createElement(
-	              "a",
-	              { href: "https://auth0.com/docs/rules", target: "_blank" },
-	              "https://auth0.com/docs/rules."
-	            )
-	          )
-	        )
-	      )
-	    );
-	  }
-
-	});
-
-/***/ },
 /* 101 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	var _react = __webpack_require__(2);
 
@@ -10108,13 +10116,17 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	module.exports = _react2.default.createClass({
-	  displayName: 'exports',
+	  displayName: "exports",
 
 	  render: function render() {
 	    return _react2.default.createElement(
-	      'h1',
-	      null,
-	      'Default'
+	      "div",
+	      { className: "container" },
+	      _react2.default.createElement(
+	        "h3",
+	        { className: "text-center" },
+	        "Default Page"
+	      )
 	    );
 	  }
 	});
@@ -29969,8 +29981,8 @@
 	var map = {
 		"./404": 294,
 		"./404.jsx": 294,
-		"./Categories": 99,
-		"./Categories.jsx": 99,
+		"./Categories": 100,
+		"./Categories.jsx": 100,
 		"./Default": 101,
 		"./Default.jsx": 101,
 		"./Footer": 97,
@@ -29981,8 +29993,8 @@
 		"./jumbotron.jsx": 98,
 		"./layout": 95,
 		"./layout.jsx": 95,
-		"./list": 100,
-		"./list.jsx": 100
+		"./list": 99,
+		"./list.jsx": 99
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -30017,11 +30029,15 @@
 	      Layout,
 	      this.props,
 	      React.createElement(
-	        'h3',
-	        null,
-	        'URL: ',
-	        this.props.url,
-	        ' - Not Found(404)'
+	        'div',
+	        { className: 'container' },
+	        React.createElement(
+	          'h3',
+	          { className: 'text-center' },
+	          'URL: ',
+	          this.props.url,
+	          ' - Not Found(404)'
+	        )
 	      )
 	    );
 	  }

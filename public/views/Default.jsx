@@ -3,7 +3,9 @@ import React from 'react'
 module.exports = React.createClass({
   render: function render() {
     return (
-      <h1>Default</h1>
+      <div className="container">
+        <h3 className="text-center">Default Page</h3>
+        </div>
     );
   }
 });

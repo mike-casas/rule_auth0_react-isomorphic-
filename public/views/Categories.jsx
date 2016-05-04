@@ -1,4 +1,5 @@
 import React from 'react'
+var Router = require('react-router');
 
 module.exports = React.createClass({
   render: function render() {
@@ -11,7 +12,9 @@ module.exports = React.createClass({
                 return (
             <div key={i} className="col-md-3">
               <div  className="bg-color-gray-light text-center rule-category" >
-                <p >{rule.title}</p>
+                <Router.Link to={'/rules/' + rule.id}>
+                  <p >{rule.title}</p>
+                </Router.Link>
               </div>
             </div>
               );

@@ -9,7 +9,9 @@ module.exports = React.createClass({
 
     return (
       <Layout {...this.props}>
-        <h3>URL: {this.props.url} - Not Found(404)</h3>
+        <div className="container">
+        <h3 className="text-center">URL: {this.props.url} - Not Found(404)</h3>
+        </div>
       </Layout>
     );
   }

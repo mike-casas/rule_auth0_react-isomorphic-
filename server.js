@@ -94,7 +94,8 @@ app.get('/rules', function(req, res) {
 
 
       res.render(req.url, {
-       title:"aqui default"
+       title:"Rules",
+       logo: "vanillajs"
       });
 
 

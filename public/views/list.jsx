@@ -1,5 +1,5 @@
 var React = require('react');
-
+import Categories from './Categories.jsx'
 module.exports= React.createClass({
   render: function(){
     function description(data) {
@@ -8,7 +8,7 @@ module.exports= React.createClass({
           };
     }
     return (
-        <div>
+        <div  {...this.props}>
         <section className="content">
           <div className="container wrapper-content">
             <h3>How it Works?</h3>
@@ -36,6 +36,7 @@ module.exports= React.createClass({
             </p>
           </div>
         </section>
+        <Categories categories= {this.props.categories} />
         </div>
 
       );
