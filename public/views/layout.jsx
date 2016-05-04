@@ -18,7 +18,6 @@ module.exports = React.createClass({
               <Jumbotron logo= {this.props.logo} title={this.props.title} summary= {this.props.summary} />
                 {this.props.children}
               <Footer/>
-
             <script src='/bundle.js'></script>
           </body>
         </html>

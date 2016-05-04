@@ -99,7 +99,7 @@
 
 	var routes = module.exports = _react2.default.createElement(
 	  _reactRouter.Router,
-	  null,
+	  { history: _reactRouter.hashHistory },
 	  _react2.default.createElement(
 	    _reactRouter.Route,
 	    { path: '/rules', component: _layout2.default },

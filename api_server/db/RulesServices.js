@@ -23,20 +23,24 @@ var _self = {};
           if(err) {
               console.log('There was an error' + err);
           } else {
-                var categories=[];
-                async.forEachOf(data, function (value, key, callback) {
-                    async.each(value.templates, function(i){
-                      async.each(i.categories, function(x){
-                        if(x == template[0].categoryName){
-                          categories.push(i);
-                        }
-                      });
+            if(template.length > 0 ){
+              var categories=[];
+              async.forEachOf(data, function (value, key, callback) {
+                  async.each(value.templates, function(i){
+                    async.each(i.categories, function(x){
+                      if(x == template[0].categoryName){
+                        categories.push(i);
+                      }
                     });
-                   return callback();
-                }, function (err) {
-                  if (err) {console.error(err.message);}
-                    return callback([{template,"categories":categories}]);
-                });
+                  });
+                 return callback();
+              }, function (err) {
+                if (err) {console.error(err.message);}
+                  return callback([{template,"categories":categories}]);
+              });
+            }else{
+              return callback([]);
+            }
           }
       });
   };

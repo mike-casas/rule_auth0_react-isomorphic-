@@ -17,12 +17,12 @@
 
 const PORT = 3000;
 
-import {join} from 'path';
-import express from 'express';
-import favicon from 'serve-favicon';
-import ReactEngine from 'react-engine';
-import routes from './public/routes.jsx';
-var async = require("async");
+import {join} from 'path'
+import express from 'express'
+import favicon from 'serve-favicon'
+import ReactEngine from 'react-engine'
+import routes from './public/routes.jsx'
+import async from 'async'
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -30,6 +30,7 @@ require('isomorphic-fetch');
 
 let app = express();
 let api = require('./api_server/api');
+
 // create the view engine with `react-engine`
 let engine = ReactEngine.server.create({
   routes: routes,
@@ -59,11 +60,12 @@ app.use(favicon(join(__dirname, '/public/favicon.ico')));
 // add our app routes
 app.use('/api', api);
 
-app.get('/rules/:ruleId', function(req, res) {
-  fetch('http://localhost:3000/api/rule/'+ req.params.ruleId)
+app.get('/rules/:ruleId', function(req, res, next) {
+  fetch('http://localhost:3000/api/rules/'+ req.params.ruleId)
     .then(function(response) {
+
       if (response.status >= 400) {
-        throw new Error("Bad response from server");
+        next();
       }
       return response.json();
     })
@@ -90,16 +92,11 @@ app.get('/rules/:ruleId', function(req, res) {
     });
 });
 
-app.get('/rules', function(req, res) {
-
-
+app.get('/rules', function(req, res)
       res.render(req.url, {
        title:"Rules",
        logo: "vanillajs"
       });
-
-
-
 });
 
 // 404 template
