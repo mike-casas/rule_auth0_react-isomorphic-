@@ -15,13 +15,14 @@ router.use(function(req, res, next) {
 });
 
 router.get('/rules/:ruleId', function(req, res) {
-   RulesServices.all(req.params.ruleId, function(data){
-      if (data.length === 0){
-        sendJSONresponse(res,404, {"message":"Not Found"});
-      }else{
-        sendJSONresponse(res,200, data);
-      }
-   });
+  RulesServices.findRule(req.params.ruleId)
+  .then((data)=> {
+    !!data ? sendJSONresponse(res,200, data)
+    : sendJSONresponse(res,404, {"message":"Not Found"})
+  });
 });
 
 module.exports= router;
+
+
+

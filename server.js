@@ -23,6 +23,7 @@ import favicon from 'serve-favicon'
 import ReactEngine from 'react-engine'
 import routes from './public/routes.jsx'
 import async from 'async'
+var Promise = require('bluebird');
 
 require('es6-promise').polyfill();
 require('isomorphic-fetch');
@@ -72,27 +73,19 @@ app.get('/rules/:ruleId', function(req, res, next) {
     .then(function(stories) {
       var categories=[];
       var counter=0;
-      let rule = stories[0].template[0].rule;
-      async.map(stories[0].categories, function(rule, callback){
-          if(counter < 4 ){
-            categories.push(rule);
-            counter ++;
-          }
-          callback();
-      }, function(err,result){
-          res.render(req.url, {
-            categories:categories,
-            title: rule.title,
-            summary: rule.summary,
-            logo: rule.logo || 'vanillajs',
-            description: rule.description,
-            code: rule.code
-          });
+      categories = stories.all_categories[0].templates.slice(0,4);
+      res.render(req.url, {
+        categories:categories,
+        title: stories.title,
+        summary: stories.summary,
+        logo: stories.logo || 'vanillajs',
+        description: stories.description,
+        code: stories.code
       });
     });
 });
 
-app.get('/rules', function(req, res)
+app.get('/rules', function(req, res){
       res.render(req.url, {
        title:"Rules",
        logo: "vanillajs"
