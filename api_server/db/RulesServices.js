@@ -6,15 +6,12 @@ var _ = require('lodash');
 var async = require("async");
 
 var _self = {};
-
-
 // sin bluebird
 /*_self.findRule = (id) => {
   return Promise.all(data.map(category => findRuleInCategory(category, id)))
     .then(result => result.filter(element => !!element))
     .then(result => result[0]);
 };*/
-
 _self.findRule = (id) => {
   return Promise.all(data.map(category => findRuleInCategory(category, id)))
     .filter(element => !!element)
